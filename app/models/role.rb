@@ -8,10 +8,6 @@ class Role
         @@all << self
     end 
 
-    def name 
-        self.role_name
-    end 
-
     def employees
         #returns an array of all the Employees who work at that role
         Employee.all.select{|employee| employee.role == self}
@@ -24,7 +20,6 @@ class Role
 
     def add_employee(employee_name, salary, manager)
         #should manager be in Employee's initialization?
-        Employee.new(employee_name, salary, manager, self)
+        Employee.new(employee_name, salary, manager, self) 
     end
-
 end

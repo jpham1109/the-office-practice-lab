@@ -14,32 +14,29 @@ class Manager
         @@all
     end 
 
-    def name 
-        self.manager_name
-    end 
-
-    def department
-        self.department
-    end
-
-    def age 
-        self.age
-    end 
-
     def employees 
-        Employee.all.map{|employee| employee.manager == self}
+        #returns an Array of all the employees that the manager oversees
+        Employee.all.select{|employee| employee.manager == self}
     end 
 
     def roles
-        #need to find which class has the info we need
-        Role.all
+        #returns an Array of all the roles that the manager oversees
+        self.employees.map{|employee| employee.role}
     end
 
     def self.all_departments
         #uniq
+        #returns an Array of all the department names that every manager oversees without repetitions
+        self.all.map{|manager| manager.department}.uniq
+    end 
+
+    def self.all_age
+        self.all.map{|manager| manager.age}
     end 
 
     def self.age_average
+        self.all_age.inject{|sum, age| sum + age}.to_f / self.all_age.size
+        binding.pry
     #returns a Float that is the average age of all the managers
     #.to_f
     end
