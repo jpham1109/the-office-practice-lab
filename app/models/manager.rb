@@ -21,7 +21,8 @@ class Manager
 
     def roles
         #returns an Array of all the roles that the manager oversees
-        self.employees.map{|employee| employee.role}
+        employees.map{|employee| employee.role}
+        binding.pry
     end
 
     def self.all_departments
@@ -35,7 +36,7 @@ class Manager
     end 
 
     def self.age_average
-        self.all_age.inject{|sum, age| sum + age}.to_f / self.all_age.size
+        all_age.inject{|sum, age| sum + age}.to_f / self.all_age.size
         binding.pry
     #returns a Float that is the average age of all the managers
     #.to_f
